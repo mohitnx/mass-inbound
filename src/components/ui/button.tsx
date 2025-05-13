@@ -1,30 +1,57 @@
 import { cn } from "../../lib/utils";
-import { ButtonHTMLAttributes, forwardRef } from "react";
+import { forwardRef } from "react";
+import type { ButtonHTMLAttributes, ReactNode } from "react";
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: "default" | "outline" | "ghost";
+  variant?: "default" | "outline" | "ghost" | "icon" | "icon-ghost";
   size?: "default" | "sm" | "lg";
+  icon?: ReactNode;
 }
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant = "default", size = "default", ...props }, ref) => {
+  (
+    {
+      className,
+      variant = "default",
+      size = "default",
+      icon,
+      children,
+      ...props
+    },
+    ref
+  ) => {
     return (
       <button
         className={cn(
-          "inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-neutral-950 disabled:pointer-events-none disabled:opacity-50",
+          // Base styles
+          "inline-flex items-center justify-center text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-neutral-950 disabled:pointer-events-none disabled:opacity-50 gap-2",
+          // Border radius and padding
+          "rounded-[67.5px] p-[8px] hover:rounded-none transition-all duration-300 ease-in-out",
+          // Variants
           {
-            "bg-neutral-900 text-neutral-50 hover:bg-neutral-900/90": variant === "default",
-            "border border-neutral-200 bg-white hover:bg-neutral-100": variant === "outline",
-            "hover:bg-neutral-100 hover:text-neutral-900": variant === "ghost",
-            "h-9 px-4 py-2": size === "default",
+            // Gradient background for default/icon
+            "bg-gradient-to-r from-[#002964] to-[#0061EF] text-white border-0":
+              variant === "default" || variant === "icon",
+            // Ghost and Icon-ghost (white bg, black border, black text)
+            "bg-none border border-white text-white ":
+              variant === "ghost" || variant === "icon-ghost",
+            // Outline (legacy, fallback)
+            "border border-neutral-200 bg-white": variant === "outline",
+          },
+          // Size
+          {
+            "h-[52px] min-w-[186px]": size === "default",
             "h-8 px-3 text-xs": size === "sm",
-            "h-10 px-8": size === "lg",
+            "h-[68px] min-w-[202px] text-lg": size === "lg",
           },
           className
         )}
         ref={ref}
         {...props}
-      />
+      >
+        {icon && <span className="mr-2 flex items-center">{icon}</span>}
+        {children}
+      </button>
     );
   }
-); 
+);

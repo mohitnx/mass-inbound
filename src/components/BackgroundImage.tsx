@@ -10,7 +10,6 @@ interface BackgroundImageBeamsProps {
 export const BackgroundImageBeams = ({
   className,
   imagePath,
-  overlayOpacity = 0.2,
 }: BackgroundImageBeamsProps) => {
   const beamsRef = useRef<HTMLDivElement>(null);
 
@@ -39,19 +38,13 @@ export const BackgroundImageBeams = ({
       )}
     >
       {/* Background Image */}
-      <div 
+      <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${imagePath})` }}
       />
-      
-      {/* Gradient Overlay */}
-      <div 
-        className="absolute inset-0 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"
-        style={{ opacity: overlayOpacity }}
-      />
-      
+
       {/* Interactive Beam Effect */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_var(--x)_var(--y),rgba(255,255,255,0.1)_0%,transparent_50%)]" />
     </div>
   );
-}; 
+};
