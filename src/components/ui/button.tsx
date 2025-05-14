@@ -24,9 +24,9 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         className={cn(
           // Base styles
-          "inline-flex items-center justify-center text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-neutral-950 disabled:pointer-events-none disabled:opacity-50 gap-2",
+          "inline-flex items-center justify-center text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-neutral-950 disabled:pointer-events-none disabled:opacity-50 gap-2 ",
           // Border radius and padding
-          "rounded-[67.5px] p-[8px] hover:rounded-none transition-all duration-300 ease-in-out",
+          "rounded-[67.5px] p-[8px] hover:rounded-none transition-all duration-500 ease-in-out",
           // Variants
           {
             // Gradient background for default/icon

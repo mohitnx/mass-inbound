@@ -17,16 +17,16 @@ export function Header() {
   return (
     <header className="bg-none absolute top-0 z-50 text-white w-screen">
       {/* Top blue bar */}
-      <div className="bg-blue-600 text-white text-sm flex justify-end items-center px-[96px] py-1">
+      <div className="bg-blue-600 text-white text-sm flex justify-center md:justify-end items-center px-[10px] md:px-[20px] lg:px-[96px] py-1">
         <span className="flex items-center gap-1 font-sans-inter font-normal text-xs leading-[140%] tracking-[0%] text-center">
           <IconMailFilled className="h-[17px]" />
           info@example.com
         </span>
       </div>
       {/* Main header */}
-      <div className="flex md:flex-row items-center justify-between px-4 py-3 md:py-5">
+      <div className="flex md:flex-row items-center justify-between px-[10px] md:px-[20px] lg:px-[60px] py-3 md:py-5">
         {/* Logo and name */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 md:w-[359px]">
           {/* Placeholder logo */}
           <img
             src="/logo/logo.png"

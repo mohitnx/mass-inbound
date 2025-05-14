@@ -1,16 +1,16 @@
 import { cn } from "../lib/utils";
 import { useEffect, useRef } from "react";
 
-interface BackgroundImageBeamsProps {
+interface BackgroundImageProps {
   className?: string;
   imagePath: string; // Path to the image in the public folder
   overlayOpacity?: number; // Optional opacity for the gradient overlay
 }
 
-export const BackgroundImageBeams = ({
+export const BackgroundImage = ({
   className,
   imagePath,
-}: BackgroundImageBeamsProps) => {
+}: BackgroundImageProps) => {
   const beamsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -33,7 +33,7 @@ export const BackgroundImageBeams = ({
     <div
       ref={beamsRef}
       className={cn(
-        "absolute inset-0 overflow-hidden [--x:50%] [--y:50%]",
+        "absolute inset-0 overflow-hidden [--x:50%] [--y:50%] z-[-1]",
         className
       )}
     >
