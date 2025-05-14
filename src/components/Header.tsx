@@ -26,7 +26,7 @@ export function Header() {
       {/* Main header */}
       <div className="flex md:flex-row items-center justify-between px-[10px] md:px-[20px] lg:px-[60px] py-3 md:py-5">
         {/* Logo and name */}
-        <div className="flex items-center gap-2 md:w-[359px]">
+        <Link to="/" className="flex items-center gap-2 md:w-[359px]">
           {/* Placeholder logo */}
           <img
             src="/logo/logo.png"
@@ -38,7 +38,7 @@ export function Header() {
             alt="Fox Media Pro Logo"
             className="flex md:hidden"
           />
-        </div>
+        </Link>
 
         {/* Desktop/Tablet nav */}
         <nav className="hidden md:flex gap-6 items-center flex-1 justify-center">
