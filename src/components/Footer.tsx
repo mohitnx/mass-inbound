@@ -4,14 +4,14 @@ import { IconMailFilled, IconPhoneFilled } from "@tabler/icons-react";
 
 export function Footer() {
   return (
-    <footer className="w-full bg-black text-white">
+    <footer className="w-full bg-black text-white border-t-[2px] border-[#0061EF]">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-7 gap-8">
           {/* Logo and company info */}
           <div className="flex flex-col">
-            <div className="flex items-center gap-2 mb-4">
+            <Link to="/" className="flex items-center gap-2 mb-4">
               <img src="/logo/logo.png" alt="Fox Media Pro Logo" />
-            </div>
+            </Link>
           </div>
 
           <div className="hidden md:block"></div>
