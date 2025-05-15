@@ -22,32 +22,35 @@ export const FormTextarea = React.forwardRef<
                     {label}
                 </label>
             )}
-            <div
-                className={cn(
-                    "relative overflow-hidden rounded-md",
-                    isFocused && "ring-1 ring-[#0061EF]"
-                )}
-            >
-                {isFocused && (
-                    <motion.div
-                        initial={{ left: "-100%" }}
-                        animate={{ left: "100%" }}
-                        transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                        className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/10 to-transparent"
-                        style={{ zIndex: 0 }}
+            <div className="relative">
+                {/* Base container with fixed height and rounded corners */}
+                <div className={cn(
+                    "w-full bg-white/30 border border-white rounded-xl overflow-hidden",
+                    isFocused && "border-[#0061EF] ring-1 ring-[#0061EF]"
+                )}>
+                    {/* Textarea with transparent background */}
+                    <textarea
+                        ref={ref}
+                        className={cn(
+                            "w-full bg-transparent border-none p-3 text-white placeholder-white focus:outline-none resize-none relative z-20",
+                            error && "border-red-500",
+                            className
+                        )}
+                        onFocus={() => setIsFocused(true)}
+                        onBlur={() => setIsFocused(false)}
+                        {...props}
                     />
-                )}
-                <textarea
-                    ref={ref}
-                    className={cn(
-                        "w-full bg-white/30 border border-white rounded-xl p-3 text-white placeholder-white focus:border-[#0061EF] focus:ring-1 focus:ring-[#0061EF] transition-all focus:outline-none resize-none relative z-10",
-                        error && "border-red-500",
-                        className
+
+                    {/* Animation contained in parent div */}
+                    {isFocused && (
+                        <motion.div
+                            initial={{ left: "-10%" }}
+                            animate={{ left: "110%" }}
+                            transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                            className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent pointer-events-none z-10"
+                        />
                     )}
-                    onFocus={() => setIsFocused(true)}
-                    onBlur={() => setIsFocused(false)}
-                    {...props}
-                />
+                </div>
             </div>
             {error && <p className="mt-1 text-sm text-red-500">{error}</p>}
         </div>

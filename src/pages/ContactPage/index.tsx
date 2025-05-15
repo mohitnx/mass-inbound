@@ -7,6 +7,7 @@ import { FormTextarea } from "../../components/ui/FormTextarea";
 import { Button } from "../../components/ui/button";
 import { ContactCard } from "../../components/ui/ContactCard";
 import { Confetti } from "../../components/ui/Confetti";
+import axios from "axios";
 
 export function ContactPage() {
   const [formData, setFormData] = useState({
@@ -22,6 +23,9 @@ export function ContactPage() {
 
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [showConfetti, setShowConfetti] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
+  const [isErrorState, setIsErrorState] = useState(false);
   const formContainerRef = useRef<HTMLDivElement>(null);
   const formRef = useRef<HTMLDivElement>(null);
   const successRef = useRef<HTMLDivElement>(null);
@@ -36,6 +40,16 @@ export function ContactPage() {
     }
   }, [isSubmitted]);
 
+  useEffect(() => {
+    if (isErrorState) {
+      // Automatically transition back to the form after 4 seconds
+      const timer = setTimeout(() => {
+        setIsErrorState(false);
+      }, 4000);
+      return () => clearTimeout(timer);
+    }
+  }, [isErrorState]);
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -48,25 +62,108 @@ export function ContactPage() {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    // Simulate form submission
-    setIsSubmitted(true);
-    // Reset form after 5 seconds
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setFormData({
-        firstName: "",
-        lastName: "",
-        email: "",
-        phone: "",
-        company: "",
-        website: "",
-        message: "",
-        consent: false,
+    setIsSubmitting(true);
+    setSubmitError("");
+    setIsErrorState(false);
+
+    try {
+      // Try using an updated API endpoint
+      // If this endpoint doesn't exist or work, you'll need to update it with a valid one
+      const apiEndpoint = "https://api.flowmediapro.com/contact/submit";
+
+      console.log("Submitting form to:", apiEndpoint);
+
+      // Store form data in localStorage for recovery if needed
+      localStorage.setItem("contactFormData", JSON.stringify({
+        first_name: formData.firstName,
+        last_name: formData.lastName,
+        phone_number: formData.phone,
+        email: formData.email,
+        company_name: formData.company,
+        company_website: formData.website,
+        message: formData.message,
+        consent: formData.consent,
+        timestamp: new Date().toISOString()
+      }));
+
+      // Use axios instead of fetch with timeout
+      const response = await axios({
+        method: 'post',
+        url: apiEndpoint,
+        data: {
+          first_name: formData.firstName,
+          last_name: formData.lastName,
+          phone_number: formData.phone,
+          email: formData.email,
+          company_name: formData.company,
+          company_website: formData.website,
+          message: formData.message,
+          consent: formData.consent,
+        },
+        timeout: 10000, // 10-second timeout
+        headers: {
+          'Content-Type': 'application/json'
+        }
       });
-    }, 5000);
+
+      // Axios automatically throws errors for non-2xx responses, so we don't need the !response.ok check
+      console.log("Form submitted successfully:", response.data);
+
+      // Form submitted successfully
+      setIsSubmitted(true);
+      setShowConfetti(true);
+
+      // Reset form after 5 seconds ONLY after successful submission
+      setTimeout(() => {
+        setIsSubmitted(false);
+        setFormData({
+          firstName: "",
+          lastName: "",
+          email: "",
+          phone: "",
+          company: "",
+          website: "",
+          message: "",
+          consent: false,
+        });
+      }, 5000);
+    } catch (error) {
+      // For error cases, we do NOT reset the form data
+      console.error("Form submission error:", error);
+      let errorMessage = "Failed to submit form. ";
+
+      // Extract and prepare error message
+      if (axios.isAxiosError(error)) {
+        if (error.code === 'ECONNABORTED') {
+          errorMessage += "Request timed out. Please try again later.";
+        } else if (!error.response) {
+          errorMessage += "Network error: The server may be down or unreachable. Please check your connection and try again.";
+        } else {
+          errorMessage += `Server error (${error.response.status}): ${error.response.data || error.message}`;
+        }
+
+        // Log detailed error information for debugging
+        let errorDetail = "";
+        if (error.response) {
+          errorDetail = `Status: ${error.response.status}, ${JSON.stringify(error.response.data || '')}`;
+        } else if (error.request) {
+          errorDetail = "No response received from server";
+        } else {
+          errorDetail = error.message;
+        }
+        console.error("API Error Details:", errorDetail);
+      } else if (error instanceof Error) {
+        errorMessage += error.message;
+      }
+
+      // Show error to user
+      setSubmitError(errorMessage);
+      setIsErrorState(true);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -96,18 +193,17 @@ export function ContactPage() {
         >
           <div
             ref={formContainerRef}
-            className={`backdrop-blur-sm border border-[#0061EF] p-8 rounded-[10px] relative overflow-hidden transition-all duration-1000 h-[900px] md:h-[660px] lg:h-[630px] ${
-              isSubmitted
-                ? "bg-gradient-to-l from-[#0061EF] to-[#002964]"
-                : "bg-[#FEFEFE]/10"
-            } flex`}
-            // style={{ minHeight: formHeight ? `${formHeight + 68}px` : 'auto' }} // Add padding (p-8 = 64px)
+            className={`backdrop-blur-sm border border-[#0061EF] p-8 rounded-[10px] relative overflow-hidden transition-all duration-1000 h-[900px] md:h-[660px] lg:h-[630px] ${isSubmitted || isErrorState
+              ? "bg-gradient-to-l from-[#0061EF] to-[#002964]"
+              : "bg-[#FEFEFE]/10"
+              } flex`}
+          // style={{ minHeight: formHeight ? `${formHeight + 68}px` : 'auto' }} // Add padding (p-8 = 64px)
           >
             {/* Shimmer effect */}
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent shimmer-effect"></div>
 
             <AnimatePresence mode="wait">
-              {isSubmitted ? (
+              {isSubmitted && !isErrorState ? (
                 <motion.div
                   ref={successRef}
                   key="success"
@@ -168,6 +264,77 @@ export function ContactPage() {
                   >
                     Your message has been sent successfully. We will get back to
                     you soon!
+                  </motion.p>
+                </motion.div>
+              ) : isErrorState ? (
+                <motion.div
+                  ref={successRef}
+                  key="error"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{
+                    opacity: 1,
+                    scale: 1,
+                    transition: {
+                      duration: 0.5,
+                      type: "spring",
+                      stiffness: 200,
+                      damping: 20,
+                    },
+                  }}
+                  exit={{ opacity: 0, scale: 0.8 }}
+                  className="relative z-10 flex flex-col items-center justify-center m-auto w-full max-w-[500px]"
+                >
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{
+                      scale: [0, 1.2, 1],
+                      transition: {
+                        times: [0, 0.6, 1],
+                        duration: 0.8,
+                        delay: 0.3,
+                      },
+                    }}
+                    className="mb-6 float-animation"
+                  >
+                    <div className="bg-red-100 p-3 rounded-full">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="w-[30px] h-[30px] text-red-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </div>
+                  </motion.div>
+
+                  <motion.h3
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{
+                      opacity: 1,
+                      y: 0,
+                      transition: { delay: 0.8, duration: 0.5 },
+                    }}
+                    className="text-[31px] font-bold mb-4 text-white text-center"
+                  >
+                    Submission Error
+                  </motion.h3>
+
+                  <motion.p
+                    initial={{ opacity: 0 }}
+                    animate={{
+                      opacity: 1,
+                      transition: { delay: 1.2, duration: 0.5 },
+                    }}
+                    className="text-center text-white text-[14px] mb-4"
+                  >
+                    {submitError}
+                  </motion.p>
+
+                  <motion.p
+                    initial={{ opacity: 0 }}
+                    animate={{
+                      opacity: 1,
+                      transition: { delay: 1.8, duration: 0.5 },
+                    }}
+                    className="text-center text-white/70 text-[12px]"
+                  >
+                    Returning to form...
                   </motion.p>
                 </motion.div>
               ) : (
@@ -285,8 +452,11 @@ export function ContactPage() {
                           type="submit"
                           size="default"
                           className="w-full group relative overflow-hidden rounded-xl hover:rounded-xl"
+                          disabled={isSubmitting}
                         >
-                          <span className="relative z-10">Send Message</span>
+                          <span className="relative z-10">
+                            {isSubmitting ? "Sending..." : "Send Message"}
+                          </span>
                           <span className="absolute inset-0 h-full w-full bg-white/10 transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-out"></span>
                         </Button>
                       </div>
