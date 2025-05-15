@@ -22,7 +22,7 @@ export const ExpandingCard: React.FC<ExpandingCardProps> = ({
   return (
     <div
       className={cn(
-        "relative overflow-hidden rounded-xl py-[28px] px-[20px] lg:px-[30px] lg:hover:px-[80px] transition-all duration-500 ease-in-out h-[400px] border border-[#FFFFFF66]",
+        "relative overflow-hidden rounded-xl py-[28px] px-[20px] lg:px-[30px] lg:hover:px-[80px] transition-all duration-500 ease-in-out h-[300px] md:h-[400px] border border-[#FFFFFF66]",
         className
       )}
     >
@@ -33,7 +33,7 @@ export const ExpandingCard: React.FC<ExpandingCardProps> = ({
         />
       </div>
 
-      <div className="relative p-6 flex flex-col justify-end items-start h-full gap-[10px]">
+      <div className="relative sm:p-6 flex flex-col justify-end items-start h-full gap-[0px] md:gap-[10px]">
         <div className="flex items-center mb-4">
           <div
             className={cn(
@@ -42,16 +42,16 @@ export const ExpandingCard: React.FC<ExpandingCardProps> = ({
           >
             {icon}
           </div>
-          <h3 className="text-heading-4 font-medium leading-[140%] tracking-[0%] text-white ">
+          <h3 className="text-heading-5 sm:text-heading-4 font-medium leading-[140%] tracking-[0%] text-white ">
             {title}
           </h3>
         </div>
 
-        <p className="text-body-sm text-[#AEAEAE] font-[400] leading-[140%] tracking-[0%]">
+        <p className="text-body-sm text-left text-[#AEAEAE] font-[400] leading-[140%] tracking-[0%] mb-2 md:mb-0">
           {description}
         </p>
 
-        <Button size="sm" className="self-start" onClick={onLearnMoreClick}>
+        <Button size="sm" className="self-start " onClick={onLearnMoreClick}>
           Learn More
         </Button>
       </div>

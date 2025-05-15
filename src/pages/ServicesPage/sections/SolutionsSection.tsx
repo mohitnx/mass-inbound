@@ -14,10 +14,10 @@ export function SolutionsSection() {
       />
       <div className="max-w-[1080px] mx-auto px-4">
         <div className="text-center mb-16 max-w-[683px] mx-auto">
-          <h2 className="text-heading-1 font-medium text-white leading-[100%] tracking-[0%] mb-[17px]">
+          <h2 className="text-heading-3 max-w-[80%] mx-auto sm:max-w-[100%] sm:text-heading-1 font-medium text-white leading-[100%] tracking-[0%] mb-[17px]">
             Our TV Advertising Solutions
           </h2>
-          <p className="text-body-lg leading-[140%] tracking-[0%] font-[400] text-[#AEAEAE]">
+          <p className="text-[16px] sm:text-body-lg leading-[140%] tracking-[0%] font-[400] text-[#AEAEAE]">
             We provide TV advertising solutions to connect you with your
             audience through both traditional and streaming platforms.
           </p>

@@ -141,7 +141,7 @@ const Slider = ({ className = "" }: SliderProps) => {
           backdropFilter: "blur(20px)",
         }}
       >
-        <p className="text-heading-6 font-medium text-black leading-[140%] text-left border-r border-[#06060680] pr-4">
+        <p className="text-[14px] sm:text-heading-6 font-medium text-black leading-[140%] text-left border-r border-[#06060680] pr-4">
           Advertise on Top TV Networks
         </p>
         <div className="w-full max-w-5xl overflow-hidden relative">
@@ -151,14 +151,14 @@ const Slider = ({ className = "" }: SliderProps) => {
             pauseOnHover={true}
           />
           <div
-            className="absolute inset-y-0 left-0 w-32 pointer-events-none"
+            className="absolute inset-y-0 left-0 w-32 pointer-events-none hidden sm:block"
             style={{
               background:
                 "linear-gradient(90deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%)",
             }}
           ></div>
           <div
-            className="absolute inset-y-0 right-0 w-32 pointer-events-none rounded-r-full"
+            className="absolute inset-y-0 right-0 w-32 pointer-events-none rounded-r-full hidden sm:block"
             style={{
               background:
                 "linear-gradient(-90deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%)",

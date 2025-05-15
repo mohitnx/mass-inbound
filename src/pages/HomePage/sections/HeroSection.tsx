@@ -2,17 +2,39 @@ import { Button } from "../../../components/ui/button";
 import { BackgroundImage } from "../../../components/BackgroundImage";
 import { IconCircleCaretRight, IconDeviceTvOld } from "@tabler/icons-react";
 import Slider from "../components/hero-slider";
+import { useEffect, useState } from "react";
 
 export function HeroSection() {
+  const [isLargeScreen, setIsLargeScreen] = useState(false);
+
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsLargeScreen(window.innerWidth >= 1024);
+    };
+
+    // Check on initial render
+    checkScreenSize();
+
+    // Add event listener
+    window.addEventListener("resize", checkScreenSize);
+
+    // Cleanup
+    return () => window.removeEventListener("resize", checkScreenSize);
+  }, []);
+
   return (
     <div
-      className="relative min-h-[calc(74vh-7.8px)] w-full flex flex-col items-center justify-center text-white text-center pb-20 pt-40"
-      style={{
-        borderBottom: "0.5px solid",
-        borderImageSource:
-          "linear-gradient(92.29deg, #F5F5F5 1.41%, #FCFCFC 97.3%)",
-        borderImageSlice: 1,
-      }}
+      className="relative min-h-[calc(65vh)] sm:min-h-[calc(74vh-7.8px)] w-full flex flex-col items-center justify-center text-white text-center pb-20 pt-40"
+      style={
+        isLargeScreen
+          ? {
+              borderBottom: "0.5px solid",
+              borderImageSource:
+                "linear-gradient(92.29deg, #F5F5F5 1.41%, #FCFCFC 97.3%)",
+              borderImageSlice: 1,
+            }
+          : {}
+      }
     >
       <BackgroundImage imagePath="/backgrounds/hero1.jpg" />
 
@@ -59,7 +81,7 @@ export function HeroSection() {
         </div>
       </div>
 
-      <Slider className="absolute -bottom-[33.5px] left-1/2 -translate-x-1/2 w-[890px]" />
+      <Slider className="absolute bottom-0 sm:-bottom-[33.5px] left-1/2 -translate-x-1/2 w-[90%] sm:w-[67%]" />
     </div>
   );
 }
