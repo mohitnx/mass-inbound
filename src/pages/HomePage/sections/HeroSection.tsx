@@ -38,10 +38,9 @@ export function HeroSection() {
             icon={
               <IconCircleCaretRight
                 stroke={1.5}
-                className="w-[13.5px] h-[13.5px] sm:w-[26.5px] sm:h-[26.5px]"
+                className="w-[18px] h-[18px] sm:w-[26.5px] sm:h-[26.5px]"
               />
             }
-            className="px-[19px]"
           >
             Streaming TV Ads
           </Button>
@@ -51,10 +50,9 @@ export function HeroSection() {
             icon={
               <IconDeviceTvOld
                 stroke={1.5}
-                className="w-[13.5px] h-[13.5px] sm:w-[26.5px] sm:h-[26.5px]"
+                className="w-[18px] h-[18px] sm:w-[26.5px] sm:h-[26.5px]"
               />
             }
-            className="px-[19px]"
           >
             Traditional TV Ads
           </Button>
