@@ -4,7 +4,7 @@ export function AboutUsSection() {
   return (
     <div className="relative min-h-[calc(74vh-7.8px)] w-full flex flex-col items-center justify-center text-white text-center pb-20 pt-48">
       <BackgroundImage imagePath="/backgrounds/about-bg.png" />
-      <div className="max-w-[822px] mx-auto flex flex-col ">
+      <div className="max-w-[822px] mx-auto flex flex-col px-4 ">
         <h2 className="text-heading-1 leading-[140%] tracking-[0%] font-medium mb-[40px]">
           About Us
         </h2>

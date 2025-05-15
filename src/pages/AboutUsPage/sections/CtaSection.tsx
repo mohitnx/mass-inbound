@@ -9,11 +9,11 @@ export function CtaSection() {
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-5xl mx-auto text-center">
-          <h2 className="text-heading-2 font-medium text-white mb-5 leading-[140%] tracking-[0px]">
+          <h2 className="text-heading-3 sm:text-heading-2 font-medium text-white mb-5 leading-[140%] tracking-[0px]">
             READY TO GROW YOUR BUSINESS?
           </h2>
 
-          <p className="text-[#AEAEAE] text-body-lg leading-[140%] tracking-[0px] mb-[40px]">
+          <p className="text-[#AEAEAE] text-[14px] sm:text-body-lg leading-[140%] tracking-[0px] mb-[40px] max-w-[70%] mx-auto">
             Get in Touch With a TV Media Buying Expert Today.
           </p>
 

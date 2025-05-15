@@ -1,4 +1,5 @@
 import { BackgroundImage } from "../../../components/BackgroundImage";
+import { useState, useEffect } from "react";
 
 interface TestimonialCardProps {
   quote: string;
@@ -69,7 +70,7 @@ export function ResultsSection() {
     {
       id: 2,
       quote:
-        "I’ve had the pleasure of knowing Bruce for 20 years and collaborating on many projects. His wealth of experience, coupled with a genuine commitment to his clients’ success, truly sets him apart. I particularly value his clear communication style, which is always focused on results. Like me, many clients continue to work with Bruce over the years because of the exceptional value he consistently delivers.",
+        "I've had the pleasure of knowing Bruce for 20 years and collaborating on many projects. His wealth of experience, coupled with a genuine commitment to his clients' success, truly sets him apart. I particularly value his clear communication style, which is always focused on results. Like me, many clients continue to work with Bruce over the years because of the exceptional value he consistently delivers.",
       author: "Christine Harmon",
       company: "VP of Marketing",
       image: "/images/man2.png",
@@ -77,23 +78,51 @@ export function ResultsSection() {
     {
       id: 3,
       quote:
-        "Bruce has been my TV media buyer for over 14 years and has placed over 250 million dollars in TV time for me. A number of other media buyers and agencies have pitched me for this business and my response is always the same: Show me you can purchase a market that matches Bruce’s rates and spot placements AND drive in as many leads…do that, and you will have my business. No one has even come close! He is the best in the business.",
+        "Bruce has been my TV media buyer for over 14 years and has placed over 250 million dollars in TV time for me. A number of other media buyers and agencies have pitched me for this business and my response is always the same: Show me you can purchase a market that matches Bruce's rates and spot placements AND drive in as many leads…do that, and you will have my business. No one has even come close! He is the best in the business.",
       author: "Michael Chen",
       company: "Elevate Digital Solutions",
       image: "/images/man3.png",
     },
   ];
 
+  const [displayedTestimonials, setDisplayedTestimonials] =
+    useState(testimonials);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const width = window.innerWidth;
+      if (width < 768) {
+        // xs screen
+        setDisplayedTestimonials(testimonials.slice(0, 1));
+      } else if (width < 1024) {
+        // md screen
+        setDisplayedTestimonials(testimonials.slice(0, 2));
+      } else {
+        // lg screen
+        setDisplayedTestimonials(testimonials);
+      }
+    };
+
+    // Set initial value
+    handleResize();
+
+    // Add event listener
+    window.addEventListener("resize", handleResize);
+
+    // Clean up
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <div className="w-full relative py-[60px]">
       <BackgroundImage imagePath="/backgrounds/result-bg.png" />
       <div className="max-w-[1080px] mx-auto px-4">
-        <h2 className="text-heading-1 font-medium leading-[140%] tracking-[0px] text-white text-center mb-16">
+        <h2 className="text-heading-3 sm:text-heading-1 font-medium leading-[140%] tracking-[0px] text-white text-center mb-8 sm:mb-16">
           Real Results, Real Stories
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
-          {testimonials.map((testimonial) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+          {displayedTestimonials.map((testimonial) => (
             <TestimonialCard
               key={testimonial.id}
               quote={testimonial.quote}
