@@ -21,7 +21,7 @@ export const FormInput = React.forwardRef<HTMLInputElement, FormInputProps>(
                 )}
                 <div
                     className={cn(
-                        "relative overflow-hidden rounded-md",
+                        "relative overflow-hidden rounded-xl",
                         isFocused && "ring-1 ring-[#0061EF]"
                     )}
                 >
