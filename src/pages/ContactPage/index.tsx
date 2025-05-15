@@ -71,7 +71,7 @@ export function ContactPage() {
     try {
       // Try using an updated API endpoint
       // If this endpoint doesn't exist or work, you'll need to update it with a valid one
-      const apiEndpoint = "https://api.flowmediapro.com/contact/submit";
+      const apiEndpoint = "https://5dkqxgif4l.execute-api.us-east-2.amazonaws.com/prod/submit";
 
       console.log("Submitting form to:", apiEndpoint);
 
