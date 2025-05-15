@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import React from 'react';
 
 interface ConfettiProps {
     count?: number;
@@ -6,14 +7,15 @@ interface ConfettiProps {
 }
 
 export function Confetti({ count = 100, colors = ['#0061EF', '#00D1FF', '#FFD700', '#FF6B6B', '#48BB78'] }: ConfettiProps) {
-    const [confetti, setConfetti] = useState<JSX.Element[]>([]);
+    const [confetti, setConfetti] = useState<React.ReactNode[]>([]);
 
     useEffect(() => {
-        const newConfetti: JSX.Element[] = [];
+        const newConfetti: React.ReactNode[] = [];
 
         // Use window dimensions instead of container
         const windowWidth = window.innerWidth;
-        const windowHeight = window.innerHeight;
+        // Remove unused variable
+        // const windowHeight = window.innerHeight;
 
         for (let i = 0; i < count; i++) {
             // Random properties for each confetti piece
