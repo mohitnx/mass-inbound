@@ -21,13 +21,13 @@ export function HeroSection() {
           Maximize Your TV Ad Investment
         </p>
 
-        <h1 className="text-heading-1 leading-[140%] tracking-[0%] font-medium">
+        <h1 className="text-heading-2 sm:text-heading-1 leading-[140%] tracking-[0%] font-medium">
           TV Media Buying That
           <br />
           Drives Results
         </h1>
 
-        <p className="text-body-1 leading-[140%] tracking-[0%] font-normal">
+        <p className="text-body-[16px] sm:text-body-lg leading-[140%] tracking-[0%] font-normal">
           Achieve unmatched reach and ROI with strategic TV media buying that
           puts your brand in front of the right audience.
         </p>
@@ -35,7 +35,12 @@ export function HeroSection() {
         <div className="flex flex-wrap justify-center gap-4">
           <Button
             variant="icon"
-            icon={<IconCircleCaretRight stroke={1.5} size={26.5} />}
+            icon={
+              <IconCircleCaretRight
+                stroke={1.5}
+                className="w-[13.5px] h-[13.5px] sm:w-[26.5px] sm:h-[26.5px]"
+              />
+            }
             className="px-[19px]"
           >
             Streaming TV Ads
@@ -43,7 +48,12 @@ export function HeroSection() {
 
           <Button
             variant="icon-ghost"
-            icon={<IconDeviceTvOld stroke={1.5} size={26.5} />}
+            icon={
+              <IconDeviceTvOld
+                stroke={1.5}
+                className="w-[13.5px] h-[13.5px] sm:w-[26.5px] sm:h-[26.5px]"
+              />
+            }
             className="px-[19px]"
           >
             Traditional TV Ads
