@@ -19,7 +19,9 @@ export function Header() {
   return (
     <header
       className={`absolute top-0 z-50 text-white w-screen ${
-        pathname.pathname === "/about" ? "bg-[#060606]" : "bg-none"
+        pathname.pathname === "/about" || pathname.pathname === "/contact"
+          ? "bg-[#060606]"
+          : "bg-none"
       }`}
     >
       {/* Top blue bar */}
