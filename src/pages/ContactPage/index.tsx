@@ -1,7 +1,7 @@
 import { BackgroundImage } from "../../components/BackgroundImage";
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { IconPhone, IconMail, IconMapPin, IconCircleCheck, IconCircleCheckFilled } from "@tabler/icons-react";
+import { IconCircleCheck, IconCircleCheckFilled } from "@tabler/icons-react";
 import { FormInput } from "../../components/ui/FormInput";
 import { FormTextarea } from "../../components/ui/FormTextarea";
 import { Button } from "../../components/ui/button";
@@ -9,7 +9,54 @@ import { ContactCard } from "../../components/ui/ContactCard";
 import { Confetti } from "../../components/ui/Confetti";
 
 export function ContactPage() {
-    const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    company: "",
+    website: "",
+    message: "",
+    consent: false,
+  });
+
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [showConfetti, setShowConfetti] = useState(false);
+  const formContainerRef = useRef<HTMLDivElement>(null);
+  const formRef = useRef<HTMLDivElement>(null);
+  const successRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (isSubmitted) {
+      setShowConfetti(true);
+      const timer = setTimeout(() => {
+        setShowConfetti(false);
+      }, 5000); // Match confetti duration
+      return () => clearTimeout(timer);
+    }
+  }, [isSubmitted]);
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value, type } = e.target;
+    if (type === "checkbox") {
+      const target = e.target as HTMLInputElement;
+      setFormData((prev) => ({ ...prev, [name]: target.checked }));
+    } else {
+      setFormData((prev) => ({ ...prev, [name]: value }));
+    }
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log("Form submitted:", formData);
+    // Simulate form submission
+    setIsSubmitted(true);
+    // Reset form after 5 seconds
+    setTimeout(() => {
+      setIsSubmitted(false);
+      setFormData({
         firstName: "",
         lastName: "",
         email: "",
@@ -17,320 +64,275 @@ export function ContactPage() {
         company: "",
         website: "",
         message: "",
-        consent: false
-    });
+        consent: false,
+      });
+    }, 5000);
+  };
 
-    const [isSubmitted, setIsSubmitted] = useState(false);
-    const [showConfetti, setShowConfetti] = useState(false);
-    const [formHeight, setFormHeight] = useState<number | null>(null);
-    const formContainerRef = useRef<HTMLDivElement>(null);
-    const formRef = useRef<HTMLDivElement>(null);
-    const successRef = useRef<HTMLDivElement>(null);
+  return (
+    <div className="relative w-full flex flex-col items-center justify-center text-white text-center pb-20 pt-40 md:pt-60 min-h-screen">
+      {/* Background stars effect */}
+      <BackgroundImage imagePath="/backgrounds/star.png" />
 
-    // Calculate and set form container height on initial load or window resize
-    useEffect(() => {
-        const updateHeight = () => {
-            if (formRef.current) {
-                const height = formRef.current.offsetHeight;
-                setFormHeight(height);
-            }
-        };
+      {showConfetti && <Confetti />}
 
-        // Initial calculation
-        updateHeight();
+      <div className="max-w-[800px] mx-auto px-4 relative z-10 mb-10">
+        <motion.h2
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="text-lg md:text-heading-1 font-medium leading-[140%] tracking-[0%] text-white text-center mb-[28px]"
+        >
+          Contact with us Today!
+        </motion.h2>
+      </div>
 
-        // Update on window resize
-        window.addEventListener('resize', updateHeight);
-        return () => window.removeEventListener('resize', updateHeight);
-    }, []);
+      <div className="grid grid-cols-12 gap-1 w-full max-w-7xl px-4">
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="col-span-12 md:col-span-7 xl:col-span-8"
+        >
+          <div
+            ref={formContainerRef}
+            className={`backdrop-blur-sm border border-[#0061EF] p-8 rounded-[10px] relative overflow-hidden transition-all duration-1000 h-[900px] md:h-[660px] lg:h-[630px] ${
+              isSubmitted
+                ? "bg-gradient-to-l from-[#0061EF] to-[#002964]"
+                : "bg-[#FEFEFE]/10"
+            } flex`}
+            // style={{ minHeight: formHeight ? `${formHeight + 68}px` : 'auto' }} // Add padding (p-8 = 64px)
+          >
+            {/* Shimmer effect */}
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent shimmer-effect"></div>
 
-    useEffect(() => {
-        if (isSubmitted) {
-            setShowConfetti(true);
-            const timer = setTimeout(() => {
-                setShowConfetti(false);
-            }, 5000); // Match confetti duration
-            return () => clearTimeout(timer);
-        }
-    }, [isSubmitted]);
+            <AnimatePresence mode="wait">
+              {isSubmitted ? (
+                <motion.div
+                  ref={successRef}
+                  key="success"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{
+                    opacity: 1,
+                    scale: 1,
+                    transition: {
+                      duration: 0.5,
+                      type: "spring",
+                      stiffness: 200,
+                      damping: 20,
+                    },
+                  }}
+                  exit={{ opacity: 0, scale: 0.8 }}
+                  className="relative z-10 flex flex-col items-center justify-center m-auto"
+                >
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{
+                      scale: [0, 1.2, 1],
+                      transition: {
+                        times: [0, 0.6, 1],
+                        duration: 0.8,
+                        delay: 0.3,
+                      },
+                    }}
+                    className="mb-6 float-animation"
+                  >
+                    <div>
+                      <img
+                        src="/icons/icon-checkbox.svg"
+                        alt="Check"
+                        className="w-[50px] h-[50px]"
+                      />
+                    </div>
+                  </motion.div>
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        const { name, value, type } = e.target;
-        if (type === 'checkbox') {
-            const target = e.target as HTMLInputElement;
-            setFormData(prev => ({ ...prev, [name]: target.checked }));
-        } else {
-            setFormData(prev => ({ ...prev, [name]: value }));
-        }
-    };
-
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
-        console.log("Form submitted:", formData);
-        // Simulate form submission
-        setIsSubmitted(true);
-        // Reset form after 5 seconds
-        setTimeout(() => {
-            setIsSubmitted(false);
-            setFormData({
-                firstName: "",
-                lastName: "",
-                email: "",
-                phone: "",
-                company: "",
-                website: "",
-                message: "",
-                consent: false
-            });
-        }, 5000);
-    };
-
-    return (
-        <div className="relative w-full flex flex-col items-center justify-center text-white text-center pb-20 pt-40 md:pt-60 min-h-screen">
-            {/* Background stars effect */}
-            <BackgroundImage imagePath="/backgrounds/star.png" />
-
-            {showConfetti && <Confetti />}
-
-            <div className="max-w-[800px] mx-auto px-4 relative z-10 mb-10">
-                <motion.h2
+                  <motion.h3
                     initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5 }}
-                    className="text-lg md:text-heading-1 font-medium leading-[140%] tracking-[0%] text-white text-center mb-[28px]"
-                >
-                    Contact with us Today!
-                </motion.h2>
-            </div>
+                    animate={{
+                      opacity: 1,
+                      y: 0,
+                      transition: { delay: 0.8, duration: 0.5 },
+                    }}
+                    className="text-[31px] font-bold mb-4 text-white"
+                  >
+                    Thank you for reaching out!
+                  </motion.h3>
 
-            <div className="grid grid-cols-12 gap-1 w-full max-w-7xl px-4">
-                <motion.div
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.5, delay: 0.2 }}
-                    className="col-span-12 md:col-span-7 xl:col-span-8"
-                >
-                    <div
-                        ref={formContainerRef}
-                        className={`backdrop-blur-sm border border-[#0061EF] p-8 rounded-[10px] relative overflow-hidden transition-all duration-1000 h-[900px] md:h-[660px] lg:h-[630px] ${isSubmitted ? 'bg-gradient-to-l from-[#0061EF] to-[#002964]' : 'bg-[#FEFEFE]/10'} flex`}
-                        // style={{ minHeight: formHeight ? `${formHeight + 68}px` : 'auto' }} // Add padding (p-8 = 64px)
-                    >
-                        {/* Shimmer effect */}
-                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent shimmer-effect"></div>
-
-                        <AnimatePresence mode="wait">
-                            {isSubmitted ? (
-                                <motion.div
-                                    ref={successRef}
-                                    key="success"
-                                    initial={{ opacity: 0, scale: 0.8 }}
-                                    animate={{
-                                        opacity: 1,
-                                        scale: 1,
-                                        transition: {
-                                            duration: 0.5,
-                                            type: "spring",
-                                            stiffness: 200,
-                                            damping: 20
-                                        }
-                                    }}
-                                    exit={{ opacity: 0, scale: 0.8 }}
-                                    className="relative z-10 flex flex-col items-center justify-center m-auto"
-                                >
-                                    <motion.div
-                                        initial={{ scale: 0 }}
-                                        animate={{
-                                            scale: [0, 1.2, 1],
-                                            transition: {
-                                                times: [0, 0.6, 1],
-                                                duration: 0.8,
-                                                delay: 0.3
-                                            }
-                                        }}
-                                        className="mb-6 float-animation"
-                                    >
-                                        <div>
-                                            <img src="/icons/icon-checkbox.svg" alt="Check" className="w-[50px] h-[50px]" />
-                                        </div>
-                                    </motion.div>
-
-                                    <motion.h3
-                                        initial={{ opacity: 0, y: 20 }}
-                                        animate={{
-                                            opacity: 1,
-                                            y: 0,
-                                            transition: { delay: 0.8, duration: 0.5 }
-                                        }}
-                                        className="text-[31px] font-bold mb-4 text-white"
-                                    >
-                                        Thank you for reaching out!
-                                    </motion.h3>
-
-                                    <motion.p
-                                        initial={{ opacity: 0 }}
-                                        animate={{
-                                            opacity: 1,
-                                            transition: { delay: 1.2, duration: 0.5 }
-                                        }}
-                                        className="text-center text-white text-[14px]"
-                                    >
-                                        Your message has been sent successfully. We will get back to you soon!
-                                    </motion.p>
-                                </motion.div>
-                            ) : (
-                                <motion.div
-                                    ref={formRef}
-                                    key="form"
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: 1 }}
-                                    exit={{ opacity: 0 }}
-                                    className="relative z-10 w-full"
-                                >
-                                    <form onSubmit={handleSubmit}>
-                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                            <FormInput
-                                                name="firstName"
-                                                placeholder="First Name"
-                                                value={formData.firstName}
-                                                onChange={handleChange}
-                                                required
-                                            />
-                                            <FormInput
-                                                name="lastName"
-                                                placeholder="Last Name"
-                                                value={formData.lastName}
-                                                onChange={handleChange}
-                                                required
-                                            />
-                                            <FormInput
-                                                type="email"
-                                                name="email"
-                                                placeholder="Email Address"
-                                                value={formData.email}
-                                                onChange={handleChange}
-                                                required
-                                            />
-                                            <FormInput
-                                                type="tel"
-                                                name="phone"
-                                                placeholder="Phone Number"
-                                                value={formData.phone}
-                                                onChange={handleChange}
-                                            />
-                                            <FormInput
-                                                name="company"
-                                                placeholder="Company Name"
-                                                value={formData.company}
-                                                onChange={handleChange}
-                                            />
-                                            <FormInput
-                                                name="website"
-                                                placeholder="Company Website"
-                                                value={formData.website}
-                                                onChange={handleChange}
-                                            />
-                                            <div className="md:col-span-2">
-                                                <FormTextarea
-                                                    name="message"
-                                                    placeholder="Your Message"
-                                                    value={formData.message}
-                                                    onChange={handleChange}
-                                                    rows={6}
-                                                    required
-                                                />
-                                            </div>
-                                            <div className="md:col-span-2 flex items-start gap-2">
-                                                <div className="relative mt-1">
-                                                    <input
-                                                        type="checkbox"
-                                                        id="consent"
-                                                        name="consent"
-                                                        checked={formData.consent}
-                                                        onChange={handleChange}
-                                                        className="opacity-0 absolute h-5 w-5 cursor-pointer z-10"
-                                                        required
-                                                    />
-                                                    <div className="cursor-pointer transition-all duration-300">
-                                                        <AnimatePresence initial={false} mode="wait">
-                                                            {formData.consent ? (
-                                                                <motion.div
-                                                                    key="checked"
-                                                                    initial={{ opacity: 0, scale: 0.8 }}
-                                                                    animate={{ opacity: 1, scale: 1 }}
-                                                                    exit={{ opacity: 0, scale: 0.8 }}
-                                                                    transition={{ duration: 0.2 }}
-                                                                >
-                                                                    <IconCircleCheckFilled className="size-7 text-[#0061EF]" />
-                                                                </motion.div>
-                                                            ) : (
-                                                                <motion.div
-                                                                    key="unchecked"
-                                                                    initial={{ opacity: 0, scale: 0.8 }}
-                                                                    animate={{ opacity: 1, scale: 1 }}
-                                                                    exit={{ opacity: 0, scale: 0.8 }}
-                                                                    transition={{ duration: 0.2 }}
-                                                                >
-                                                                    <IconCircleCheck className="size-7 text-white" />
-                                                                </motion.div>
-                                                            )}
-                                                        </AnimatePresence>
-                                                    </div>
-                                                </div>
-                                                <label htmlFor="consent" className="text-[12px] text-white/80 text-left cursor-pointer tracking-wider mt-[0.5px]">
-                                                    By checking this box, I consent to receive marketing and promotional messages, including special offers,
-                                                    discounts, new product updates among others. Message frequency may vary. Message & data rates may apply.
-                                                    Reply HELP for help or STOP to opt-out.
-                                                </label>
-                                            </div>
-                                            <div className="md:col-span-2">
-                                                <Button type="submit" size="default" className="w-full group relative overflow-hidden rounded-xl hover:rounded-xl">
-                                                    <span className="relative z-10">Send Message</span>
-                                                    <span className="absolute inset-0 h-full w-full bg-white/10 transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-out"></span>
-                                                </Button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </motion.div>
-                            )}
-                        </AnimatePresence>
-                    </div>
+                  <motion.p
+                    initial={{ opacity: 0 }}
+                    animate={{
+                      opacity: 1,
+                      transition: { delay: 1.2, duration: 0.5 },
+                    }}
+                    className="text-center text-white text-[14px]"
+                  >
+                    Your message has been sent successfully. We will get back to
+                    you soon!
+                  </motion.p>
                 </motion.div>
-
+              ) : (
                 <motion.div
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.5, delay: 0.3 }}
-                    className="col-span-12 md:col-span-5 xl:col-span-4 flex flex-col gap-6"
+                  ref={formRef}
+                  key="form"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="relative z-10 w-full"
                 >
-                    <div className="text-left p-8 rounded-[10px] h-full">
-                        <p className="text-[20px] text-[#F68104]">Contact</p>
-                        <h3 className="text-[49px]">Let's Connect</h3>
-                        <p className="text-[20px] mb-6">We're here to help!</p>
-
-                        <div className="space-y-6">
-                            <ContactCard
-                                title="Call Us"
-                                description="(941) 586-3512"
-                                icon={<img src="/icons/call.svg" alt="Call Us" />}
-                                href="tel:+19415863512"
-                            />
-
-                            <ContactCard
-                                title="Email Us"
-                                description="bruce@flowmediapro.com"
-                                icon={<img src="/icons/mail.svg" alt="Email Us" />}
-                                href="mailto:bruce@flowmediapro.com"
-                            />
-
-                            <ContactCard
-                                title="Location"
-                                description="United States"
-                                icon={<img src="/icons/location.svg" alt="Location" />}
-                            />
+                  <form onSubmit={handleSubmit}>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <FormInput
+                        name="firstName"
+                        placeholder="First Name"
+                        value={formData.firstName}
+                        onChange={handleChange}
+                        required
+                      />
+                      <FormInput
+                        name="lastName"
+                        placeholder="Last Name"
+                        value={formData.lastName}
+                        onChange={handleChange}
+                        required
+                      />
+                      <FormInput
+                        type="email"
+                        name="email"
+                        placeholder="Email Address"
+                        value={formData.email}
+                        onChange={handleChange}
+                        required
+                      />
+                      <FormInput
+                        type="tel"
+                        name="phone"
+                        placeholder="Phone Number"
+                        value={formData.phone}
+                        onChange={handleChange}
+                      />
+                      <FormInput
+                        name="company"
+                        placeholder="Company Name"
+                        value={formData.company}
+                        onChange={handleChange}
+                      />
+                      <FormInput
+                        name="website"
+                        placeholder="Company Website"
+                        value={formData.website}
+                        onChange={handleChange}
+                      />
+                      <div className="md:col-span-2">
+                        <FormTextarea
+                          name="message"
+                          placeholder="Your Message"
+                          value={formData.message}
+                          onChange={handleChange}
+                          rows={6}
+                          required
+                        />
+                      </div>
+                      <div className="md:col-span-2 flex items-start gap-2">
+                        <div className="relative mt-1">
+                          <input
+                            type="checkbox"
+                            id="consent"
+                            name="consent"
+                            checked={formData.consent}
+                            onChange={handleChange}
+                            className="opacity-0 absolute h-5 w-5 cursor-pointer z-10"
+                            required
+                          />
+                          <div className="cursor-pointer transition-all duration-300">
+                            <AnimatePresence initial={false} mode="wait">
+                              {formData.consent ? (
+                                <motion.div
+                                  key="checked"
+                                  initial={{ opacity: 0, scale: 0.8 }}
+                                  animate={{ opacity: 1, scale: 1 }}
+                                  exit={{ opacity: 0, scale: 0.8 }}
+                                  transition={{ duration: 0.2 }}
+                                >
+                                  <IconCircleCheckFilled className="size-7 text-[#0061EF]" />
+                                </motion.div>
+                              ) : (
+                                <motion.div
+                                  key="unchecked"
+                                  initial={{ opacity: 0, scale: 0.8 }}
+                                  animate={{ opacity: 1, scale: 1 }}
+                                  exit={{ opacity: 0, scale: 0.8 }}
+                                  transition={{ duration: 0.2 }}
+                                >
+                                  <IconCircleCheck className="size-7 text-white" />
+                                </motion.div>
+                              )}
+                            </AnimatePresence>
+                          </div>
                         </div>
+                        <label
+                          htmlFor="consent"
+                          className="text-[12px] text-white/80 text-left cursor-pointer tracking-wider mt-[0.5px]"
+                        >
+                          By checking this box, I consent to receive marketing
+                          and promotional messages, including special offers,
+                          discounts, new product updates among others. Message
+                          frequency may vary. Message & data rates may apply.
+                          Reply HELP for help or STOP to opt-out.
+                        </label>
+                      </div>
+                      <div className="md:col-span-2">
+                        <Button
+                          type="submit"
+                          size="default"
+                          className="w-full group relative overflow-hidden rounded-xl hover:rounded-xl"
+                        >
+                          <span className="relative z-10">Send Message</span>
+                          <span className="absolute inset-0 h-full w-full bg-white/10 transform scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300 ease-out"></span>
+                        </Button>
+                      </div>
                     </div>
+                  </form>
                 </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, x: 20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="col-span-12 md:col-span-5 xl:col-span-4 flex flex-col gap-6"
+        >
+          <div className="text-left p-8 rounded-[10px] h-full">
+            <p className="text-[20px] text-[#F68104]">Contact</p>
+            <h3 className="text-[49px]">Let's Connect</h3>
+            <p className="text-[20px] mb-6">We're here to help!</p>
+
+            <div className="space-y-6">
+              <ContactCard
+                title="Call Us"
+                description="(941) 586-3512"
+                icon={<img src="/icons/call.svg" alt="Call Us" />}
+                href="tel:+19415863512"
+              />
+
+              <ContactCard
+                title="Email Us"
+                description="bruce@flowmediapro.com"
+                icon={<img src="/icons/mail.svg" alt="Email Us" />}
+                href="mailto:bruce@flowmediapro.com"
+              />
+
+              <ContactCard
+                title="Location"
+                description="United States"
+                icon={<img src="/icons/location.svg" alt="Location" />}
+              />
             </div>
-        </div>
-    );
+          </div>
+        </motion.div>
+      </div>
+    </div>
+  );
 }
