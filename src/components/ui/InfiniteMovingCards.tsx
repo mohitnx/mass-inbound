@@ -32,11 +32,9 @@ export const InfiniteMovingCards = ({
     // Add event listener for animation end
     const scrollerContent = Array.from(scrollerRef.current.children);
 
-    // Calculate the total width of all items
-    const scrollerWidth = scrollerRef.current.offsetWidth;
-
-    // Set the animation duration based on width and speed
-    const animationDuration = scrollerWidth / speed;
+    // Calculate animation duration based on speed
+    // Lower speeds mean longer duration (slower animation)
+    const animationDuration = (100 / speed) * 10;
 
     // Add animation styles to document head
     const styleEl = document.createElement("style");

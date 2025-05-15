@@ -147,7 +147,6 @@ const Slider = ({ className = "" }: SliderProps) => {
         <div className="w-full max-w-5xl overflow-hidden relative">
           <InfiniteMovingCards
             items={logoItems}
-            speed={80}
             direction="left"
             pauseOnHover={true}
           />
