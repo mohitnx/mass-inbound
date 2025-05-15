@@ -42,7 +42,7 @@ export function TestimonialSection() {
                 ref={videoRef}
                 src="/video/testimonial.mp4"
                 className="w-full h-full object-cover rounded-[10px]"
-                poster="/images/bruce-fox.jpg"
+                poster="/images/video-template.png"
                 loop
                 playsInline
               />
