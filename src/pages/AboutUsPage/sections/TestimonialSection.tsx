@@ -7,6 +7,7 @@ import {
 import { Button } from "../../../components/ui/button";
 import { useState, useRef } from "react";
 import Slider from "../components/testmonial-slider";
+import { Link } from "react-router-dom";
 
 export function TestimonialSection() {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -96,9 +97,11 @@ export function TestimonialSection() {
               Ready to get started? Let’s connect
             </p>
 
-            <Button className="w-[186px] text-[16px] p-[8px_19px] h-[52px]">
-              Get Started
-            </Button>
+            <Link to="/contact">
+              <Button className="w-[186px] text-[16px] p-[8px_19px] h-[52px]">
+                Get Started
+              </Button>
+            </Link>
           </div>
         </div>
 

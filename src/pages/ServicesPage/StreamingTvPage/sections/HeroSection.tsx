@@ -1,7 +1,7 @@
 import Slider from "../components/hero-slider";
 import { BackgroundImage } from "../../../../components/BackgroundImage";
 import { Button } from "../../../../components/ui/button";
-
+import { Link } from "react-router-dom";
 export function HeroSection() {
   return (
     <div
@@ -31,9 +31,11 @@ export function HeroSection() {
         </p>
 
         <div className="flex flex-wrap justify-center gap-4">
-          <Button variant="default" className="h-[48px] w-[140px] text-[16px]">
-            Get Started
-          </Button>
+          <Link to="/contact">
+            <Button variant="default" className="h-[48px] w-[140px] text-[16px]">
+              Get Started
+            </Button>
+          </Link>
         </div>
       </div>
 

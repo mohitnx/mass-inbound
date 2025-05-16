@@ -63,7 +63,7 @@ export function Header() {
 
         {/* Actions */}
         <div className="items-center gap-4 flex">
-          <Link to="/get-started" className="hidden md:flex">
+          <Link to="/contact" className="hidden md:flex">
             <Button variant="default">Get Started</Button>
           </Link>
           <div className="flex items-center gap-2">

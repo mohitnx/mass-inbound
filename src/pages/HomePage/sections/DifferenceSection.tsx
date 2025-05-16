@@ -38,9 +38,8 @@ function DifferenceCard({ title, subtitle, description }: DifferenceCardProps) {
 
       {/* Subtle pulsing border effect on hover */}
       <div
-        className={`absolute inset-0 rounded-[10px] transition-opacity duration-700 ${
-          isHovered ? "opacity-100" : "opacity-0"
-        }`}
+        className={`absolute inset-0 rounded-[10px] transition-opacity duration-700 ${isHovered ? "opacity-100" : "opacity-0"
+          }`}
       >
         <div className="absolute inset-0 border border-[#F68104] rounded-[10px] animate-pulse"></div>
       </div>
@@ -51,42 +50,37 @@ function DifferenceCard({ title, subtitle, description }: DifferenceCardProps) {
 export function DifferenceSection() {
   const differenceData: DifferenceCardProps[] = [
     {
-      title: "$500M+",
-      subtitle: "in Transactions",
-      description:
-        "Over four decades of hands-on experience in TV, radio, and streaming media buying. We've helped brands secure top-tier placements at unmatched rates.",
+      "title": "$500M+",
+      "subtitle": "in Transactions",
+      "description": "Over four decades of hands-on experience in TV, radio, and streaming media buying. We've helped brands secure top-tier placements at unmatched rates."
     },
     {
-      title: "70+",
-      subtitle: "Media Partners",
-      description:
-        "Exclusive relationships with premium networks and platforms across television, streaming, and radio to deliver maximum impact for your advertising budget.",
+      "title": "70+",
+      "subtitle": "U.S Markets",
+      "description": "We operate with direct-to-publisher relationships across traditional and streaming TV, ensuring reach without inflated layers."
     },
     {
-      title: "63%",
-      subtitle: "Lower CPM",
-      description:
-        "Our strategic buying approach consistently delivers costs well below industry averages, maximizing your ROI while maintaining premium placement quality.",
+      "title": "63%",
+      "subtitle": "Lower CPA",
+      "description": "Clients see dramatically lower cost-per-acquisition by leveraging our optimized inventory strategies."
     },
     {
-      title: "100%",
-      subtitle: "Transparency",
-      description:
-        "Complete visibility into your campaign performance with detailed analytics and reporting that show exactly how your media dollars are working for you.",
+      "title": "100%",
+      "subtitle": "Transparent Spending",
+      "description": "Unlike agencies with 3–5 layers of hidden markups, we buy directly from the auction and pass savings straight to clients."
     },
     {
-      title: "Smart",
-      subtitle: "Audience Targeting",
-      description:
-        "Proprietary data analysis that identifies optimal viewer segments and programming matchups to ensure your message reaches the right audience at the right time.",
+      "title": "Smart",
+      "subtitle": "Audience Targeting",
+      "description": "We reach the right viewer with ads based on income, location, interests, and more delivered un-skippable through top DSPs."
     },
     {
-      title: "Real-Time",
-      subtitle: "Campaign Optimization",
-      description:
-        "Continuous monitoring and adjustment of your media strategy based on performance insights, ensuring maximum effectiveness throughout your campaign lifecycle.",
-    },
-  ];
+      "title": "Real-Time",
+      "subtitle": "Strategy Adjustments",
+      "description": "We track, analyze, and pivot campaigns based on data not guesswork. From reach to ROAS, every dollar works harder."
+    }
+  ]
+    ;
 
   return (
     <div className="w-full py-20 relative ">

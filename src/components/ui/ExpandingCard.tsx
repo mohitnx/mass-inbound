@@ -47,7 +47,7 @@ export const ExpandingCard: React.FC<ExpandingCardProps> = ({
           </h3>
         </div>
 
-        <p className="text-[12px] md:text-body-sm text-left text-[#AEAEAE] font-[400] leading-[140%] tracking-[0%] mb-2 md:mb-0">
+        <p className="text-[12px] md:text-body-sm text-left text-[#AEAEAE] font-[400] leading-[140%] tracking-[0%] mb-2 md:mb-0 md:w-[90%]">
           {description}
         </p>
 

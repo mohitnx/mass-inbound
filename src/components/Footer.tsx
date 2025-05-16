@@ -101,7 +101,7 @@ export function Footer() {
             <div className="hidden lg:block"></div>
             <div className="md:block hidden">
               <div className="mt-6">
-                <Link to="/get-started">
+                <Link to="/contact">
                   <Button variant="default">Get Started</Button>
                 </Link>
               </div>
@@ -174,6 +174,7 @@ export function Footer() {
           <a
             href="https://www.massinbound.com"
             className="underline hover:text-blue-200"
+            target="_blank"
           >
             Mass Inbound
           </a>

@@ -28,7 +28,8 @@ export function ExperienceSection() {
             <BentoCard
               title="Direct Access to Media"
               description="We cut out the middlemen by purchasing ad space directly from auctions, ensuring you get the best rates and full control of your campaign."
-              icon={"/icons/icon-chain.svg"}
+              icon={"/icons/icon-bar.svg"}
+
               className="grow flex-1"
             />
           </div>
@@ -39,7 +40,7 @@ export function ExperienceSection() {
             <BentoCard
               title="Data-Driven Decisions"
               description="Our advanced analytics provide insights on audience demographics, engagement rates, and campaign performance to fine-tune your strategy."
-              icon={"/icons/icon-bar.svg"}
+              icon={"/icons/icon-chain.svg"}
               className="grow"
             />
 

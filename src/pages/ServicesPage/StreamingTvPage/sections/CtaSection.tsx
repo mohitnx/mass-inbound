@@ -18,7 +18,7 @@ export function CtaSection() {
           </p>
 
           <div className="items-center gap-4 mt-3 md:mt-0 flex justify-center">
-            <Link to="/get-started" className="">
+            <Link to="/contact" className="">
               <Button variant="default" className="p-[20px_20px]">
                 Get Started
               </Button>
