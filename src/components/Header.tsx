@@ -32,7 +32,7 @@ export function Header() {
         </span>
       </div>
       {/* Main header */}
-      <div className="flex md:flex-row items-center justify-between px-[10px] md:px-[20px] lg:px-[60px] py-3 md:py-5">
+      <div className="flex md:flex-row items-center justify-between px-[10px] md:px-[20px] lg:px-[60px] py-3 md:py-5 h-[80px] md:h-[103px]">
         {/* Logo and name */}
         <Link to="/" className="w-[117px] md:w-[359px]">
           {/* Placeholder logo */}
