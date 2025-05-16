@@ -42,13 +42,11 @@ const faqs: FAQItem[] = [
 
 export default function FAQsPage() {
     const [openFAQs, setOpenFAQs] = useState<Set<string>>(new Set());
-    const [isMobile, setIsMobile] = useState<boolean>(false);
 
     // Check if screen is mobile and open all FAQs if true
     useEffect(() => {
         const checkIfMobile = () => {
             const mobile = window.innerWidth < 768;
-            setIsMobile(mobile);
 
             if (mobile) {
                 // Open all FAQs on mobile
