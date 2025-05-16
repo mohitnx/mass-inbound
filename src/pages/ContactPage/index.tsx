@@ -482,7 +482,7 @@ export function ContactPage() {
             <div className="space-y-6">
               <ContactCard
                 title="Call Us"
-                description="(941) 586-3512"
+                description="(941) 586-8512"
                 icon={<img src="/icons/call.svg" alt="Call Us" />}
                 href="tel:+19415863512"
               />
@@ -491,7 +491,7 @@ export function ContactPage() {
                 title="Email Us"
                 description="bruce@flowmediapro.com"
                 icon={<img src="/icons/mail.svg" alt="Email Us" />}
-                href="mailto:bruce@flowmediapro.com"
+                href="mailto:bruce@foxmediapro.com"
               />
 
               <ContactCard
