@@ -39,7 +39,7 @@ export function HeroSection() {
       </div>
 
       <div className="w-full h-full flex justify-center items-center">
-        <Slider className="w-[90%] sm:w-[100%] md:w-[100%] lg:w-[66%]" />
+        <Slider className="w-[90%] sm:w-[100%] md:w-[100%] lg:w-[66%] max-w-[1257px]" />
       </div>
     </div>
   );

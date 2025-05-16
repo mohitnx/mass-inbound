@@ -86,7 +86,7 @@ export function HeroSection() {
         </div>
       </div>
 
-      <Slider className="absolute bottom-0 sm:-bottom-[33.5px] left-1/2 -translate-x-1/2 w-[90%] sm:w-[66%]" />
+      <Slider className="absolute bottom-0 sm:-bottom-[33.5px] left-1/2 -translate-x-1/2 w-[90%] sm:w-[66%] max-w-[1257px]" />
     </div>
   );
 }
