@@ -285,7 +285,7 @@ export default function BlogDetailPage() {
 
                         <Button
                             onClick={() => navigate('/blogs')}
-                            size="sm" className="border border-white text-white bg-transparent text-[18px] py-5 px-8"
+                            size="sm" className="border border-white text-white bg-transparent text-[18px] md:py-5 px-8"
                         >
                             <svg className="w-4 h-4 mr-2 rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
