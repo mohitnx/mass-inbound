@@ -28,7 +28,7 @@ export function CtaSection() {
                   Call Us
                 </span>
                 <span className="text-[16px] leading-[140%] tracking-[0%] text-white">
-                  (941) 586-8512
+                  <a href="tel:9415868512" className="hover:text-blue-300">(941) 586-8512</a>
                 </span>
               </div>
             </div>

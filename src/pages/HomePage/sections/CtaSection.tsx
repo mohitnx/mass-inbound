@@ -18,8 +18,10 @@ export function CtaSection() {
           </p>
 
           <div className="items-center gap-4 mt-3 md:mt-0 flex justify-center">
-            <Link to="/get-started" className="hidden md:flex">
-              <Button variant="default">Get Started</Button>
+            <Link to="/get-started" className="">
+              <Button variant="default" className="p-[20px_30px] text-[16px]">
+                Get Started
+              </Button>
             </Link>
             <div className="flex items-center gap-2">
               <img src="/icons/call.svg" alt="Call Us" />
@@ -28,7 +30,7 @@ export function CtaSection() {
                   Call Us
                 </span>
                 <span className="text-[16px] leading-[140%] tracking-[0%] text-white">
-                  (941) 586-8512
+                  <a href="tel:9415868512" className="hover:text-blue-300">(941) 586-8512</a>
                 </span>
               </div>
             </div>
