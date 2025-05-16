@@ -34,7 +34,7 @@ export function BentoCard({
       transition={{ duration: 0.5 }}
       viewport={{ once: true }}
       className={twMerge(
-        "bg-[#0F0F0F] border border-[#FFFFFF66] rounded-[16px] overflow-hidden flex flex-col shadow-none h-full p-5",
+        "bg-[#0F0F0F] border border-[#FFFFFF66] rounded-[16px] overflow-hidden flex flex-col flex-1 shadow-none min-h-full p-[10px] sm:p-5",
         className
       )}
     >
@@ -56,23 +56,23 @@ export function BentoCard({
       <div className="relative flex-grow">
         <div
           className={`flex items-center justify-between pb-[10px] ${
-            icon ? "pt-[20px]" : ""
+            icon ? "pt-[0px] sm:pt-[20px]" : ""
           }`}
         >
           {title && (
-            <h3 className="text-heading-3 font-medium text-white leading-[140%] tracking-[0%]">
+            <h3 className="text-heading-6 sm:text-heading-4 lg:text-heading-3 font-medium text-white leading-[140%] tracking-[0%]">
               {title}
             </h3>
           )}
 
           {icon && (
-            <div className="">
+            <div className="h-[50px] w-[50px]">
               <img src={icon} alt={title} />
             </div>
           )}
         </div>
         {description && (
-          <p className="text-[16px] text-[#AEAEAE] leading-[140%] tracking-[0%]">
+          <p className="text-[12px] sm:text-[16px] text-[#AEAEAE] leading-[140%] tracking-[0%]">
             {description}
           </p>
         )}

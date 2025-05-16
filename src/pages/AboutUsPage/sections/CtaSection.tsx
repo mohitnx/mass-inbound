@@ -9,11 +9,11 @@ export function CtaSection() {
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-5xl mx-auto text-center">
-          <h2 className="text-heading-2 font-medium text-white mb-5 leading-[140%] tracking-[0px]">
+          <h2 className="text-heading-3 sm:text-heading-2 font-medium text-white mb-5 leading-[140%] tracking-[0px]">
             READY TO GROW YOUR BUSINESS?
           </h2>
 
-          <p className="text-[#AEAEAE] text-body-lg leading-[140%] tracking-[0px] mb-[40px]">
+          <p className="text-[#AEAEAE] text-[14px] sm:text-body-lg leading-[140%] tracking-[0px] mb-[40px] max-w-[70%] mx-auto">
             Get in Touch With a TV Media Buying Expert Today.
           </p>
 
@@ -28,7 +28,7 @@ export function CtaSection() {
                   Call Us
                 </span>
                 <span className="text-[16px] leading-[140%] tracking-[0%] text-white">
-                  (941) 586-8512
+                  <a href="tel:9415868512" className="hover:text-blue-300">(941) 586-8512</a>
                 </span>
               </div>
             </div>

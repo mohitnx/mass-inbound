@@ -61,7 +61,7 @@ const Slider = ({ className = "" }: SliderProps) => {
           backdropFilter: "blur(20px)",
         }}
       >
-        <p className="text-heading-6 font-medium text-black leading-[140%] text-left border-r border-[#06060680] pr-4">
+        <p className="text-heading-6 hidden sm:block font-medium text-black leading-[140%] text-left border-r border-[#06060680] pr-4">
           Trusted by Leading Brands:
         </p>
         <div className="w-full max-w-5xl overflow-hidden relative">

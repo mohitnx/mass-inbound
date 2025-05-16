@@ -95,15 +95,15 @@ export function DifferenceSection() {
 
       <div className="max-w-[800px] mx-auto px-4 relative z-10">
         <div className="text-center mb-[28px]">
-          <h2 className="text-heading-1 font-medium leading-[140%] tracking-[0%] text-white mb-2">
+          <h2 className="text-heading-3 sm:text-heading-1 font-medium leading-[140%] tracking-[0%] text-white mb-2">
             What Makes us Different
           </h2>
-          <p className="text-[16px] leading-[140%] tracking-[0%] font-[400] text-[#DFDFDF]">
+          <p className="text-[14px] sm:text-[16px] max-w-[70%] mx-auto sm:max-w-[100%] leading-[140%] tracking-[0%] font-[400] text-[#DFDFDF]">
             A Proven, Data-Backed Approach to Media Buying That Delivers.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-5xl mx-auto mt-6">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-3 md:gap-6 max-w-5xl mx-auto mt-6">
           {differenceData.map((card, index) => (
             <DifferenceCard
               key={index + 3}

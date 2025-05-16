@@ -8,6 +8,8 @@ import { ContactPage } from "../pages/ContactPage";
 import BlogsPage from "../pages/BlogsPage";
 import BlogDetailPage from "../pages/BlogDetailPage";
 import FAQsPage from "../pages/FAQsPage";
+import { StreamingTv } from "../pages/ServicesPage/StreamingTvPage";
+import { TraditionalTv } from "../pages/ServicesPage/TraditionalTvPage";
 
 export const router = createBrowserRouter([
   {
@@ -21,6 +23,14 @@ export const router = createBrowserRouter([
       {
         path: "/services",
         element: <Services />,
+      },
+      {
+        path: "/services/streaming-tv",
+        element: <StreamingTv />,
+      },
+      {
+        path: "/services/traditional-tv",
+        element: <TraditionalTv />,
       },
       {
         path: "/about",

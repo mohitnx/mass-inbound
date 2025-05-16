@@ -4,20 +4,22 @@ import {
   ExpandingCard,
   ExpandingCardContainer,
 } from "../../../components/ui/ExpandingCard";
+import { useNavigate } from "react-router-dom";
 
 export function SolutionsSection() {
+  const navigate = useNavigate();
   return (
-    <div className="w-full py-[78px] relative mt-[67.5px]">
+    <div className="w-full py-[40px] md:py-[78px] relative mt-[67.5px]">
       <BackgroundImage
         imagePath="/backgrounds/solution/bg-solution.png"
         className="bg-[#060606]"
       />
       <div className="max-w-[1080px] mx-auto px-4">
         <div className="text-center mb-16 max-w-[683px] mx-auto">
-          <h2 className="text-heading-1 font-medium text-white leading-[100%] tracking-[0%] mb-[17px]">
+          <h2 className="text-heading-3 max-w-[80%] mx-auto sm:max-w-[100%] sm:text-heading-1 font-medium text-white leading-[100%] tracking-[0%] mb-[17px]">
             Our TV Advertising Solutions
           </h2>
-          <p className="text-body-lg leading-[140%] tracking-[0%] font-[400] text-[#AEAEAE]">
+          <p className="text-[16px] sm:text-body-lg leading-[140%] tracking-[0%] font-[400] text-[#AEAEAE]">
             We provide TV advertising solutions to connect you with your
             audience through both traditional and streaming platforms.
           </p>
@@ -30,9 +32,7 @@ export function SolutionsSection() {
             title="Streaming TV Advertising"
             description="Connect with engaged audiences through premium streaming channels, delivering your message directly to modern viewers."
             backgroundImage="/backgrounds/solution/bg-1.png"
-            onLearnMoreClick={() =>
-              console.log("Learn more about Streaming TV")
-            }
+            onLearnMoreClick={() => navigate("/services/streaming-tv")}
           />
 
           {/* Traditional TV Advertising Card */}
@@ -41,9 +41,7 @@ export function SolutionsSection() {
             title="Traditional TV Advertising"
             description="Maximize brand exposure with strategic placements on popular TV networks, reaching households nationwide."
             backgroundImage="/backgrounds/solution/bg-2.png"
-            onLearnMoreClick={() =>
-              console.log("Learn more about Traditional TV")
-            }
+            onLearnMoreClick={() => navigate("/services/traditional-tv")}
           />
         </ExpandingCardContainer>
       </div>

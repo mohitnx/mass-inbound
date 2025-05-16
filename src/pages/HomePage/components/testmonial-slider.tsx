@@ -61,7 +61,7 @@ const Slider = ({ className = "" }: SliderProps) => {
           backdropFilter: "blur(20px)",
         }}
       >
-        <p className="text-heading-6 font-medium text-black leading-[140%] text-left border-r border-[#06060680] pr-4">
+        <p className="text-heading-6 hidden sm:block font-medium text-black leading-[140%] text-left border-r border-[#06060680] pr-4">
           Trusted by Leading Brands:
         </p>
         <div className="w-full max-w-5xl overflow-hidden relative">
@@ -73,7 +73,7 @@ const Slider = ({ className = "" }: SliderProps) => {
             className="py-[7.15px]"
           />
           <div
-            className="absolute inset-y-0 left-0 w-32 pointer-events-none"
+            className="absolute inset-y-0 left-0 w-32 pointer-events-none rounded-l-full sm:rounded-l-none"
             style={{
               background:
                 "linear-gradient(90deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%)",
