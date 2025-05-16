@@ -34,7 +34,7 @@ export function TestimonialSection() {
   return (
     <div className="w-full py-20">
       <div className="max-w-[1080px] mx-auto px-4">
-        <div className="flex flex-col md:flex-row">
+        <div className="flex flex-col md:flex-row gap-8 md:gap-0">
           {/* Video Column */}
           <div className="md:w-1/2 flex justify-center items-center">
             <div className="aspect-[5/3] w-full overflow-visible relative">
@@ -42,7 +42,7 @@ export function TestimonialSection() {
                 ref={videoRef}
                 src="/video/testimonial.mp4"
                 className="w-full h-full object-cover rounded-[10px]"
-                poster="/images/bruce-fox.jpg"
+                poster="/images/video-template.png"
                 loop
                 playsInline
               />
@@ -73,7 +73,7 @@ export function TestimonialSection() {
           </div>
 
           {/* Quote Column */}
-          <div className="md:w-1/2 p-8 flex flex-col justify-center">
+          <div className="md:w-1/2 p-4 md:p-8 flex flex-col justify-center">
             <div className="text-heading-4 text-white font-medium leading-[140%] tracking-[0px] mb-2">
               "I'm a fierce negotiator who treats my clients' money like my
               own."
@@ -96,7 +96,9 @@ export function TestimonialSection() {
               Ready to get started? Let’s connect
             </p>
 
-            <Button className="w-fit">Get Started</Button>
+            <Button className="w-[186px] text-[16px] p-[8px_19px] h-[52px]">
+              Get Started
+            </Button>
           </div>
         </div>
 

@@ -33,25 +33,29 @@ export const ExpandingCard: React.FC<ExpandingCardProps> = ({
         />
       </div>
 
-      <div className="relative p-6 flex flex-col justify-end items-start h-full gap-[10px]">
+      <div className="relative sm:p-6 flex flex-col justify-end items-start h-full gap-[0px] md:gap-[10px]">
         <div className="flex items-center mb-4">
           <div
             className={cn(
-              "min-w-10 min-h-10 rounded-full flex items-center justify-center mr-3 bg-gradient-to-r from-[#F68104] to-[#FCD8B1]"
+              "min-w-[30px] min-h-[30px] rounded-full flex items-center justify-center mr-3 bg-gradient-to-r from-[#F68104] to-[#FCD8B1]"
             )}
           >
             {icon}
           </div>
-          <h3 className="text-heading-4 font-medium leading-[140%] tracking-[0%] text-white ">
+          <h3 className="text-heading-7 sm:text-heading-4 font-medium leading-[140%] tracking-[0%] text-white ">
             {title}
           </h3>
         </div>
 
-        <p className="text-body-sm text-[#AEAEAE] font-[400] leading-[140%] tracking-[0%]">
+        <p className="text-[12px] md:text-body-sm text-left text-[#AEAEAE] font-[400] leading-[140%] tracking-[0%] mb-2 md:mb-0">
           {description}
         </p>
 
-        <Button size="sm" className="self-start" onClick={onLearnMoreClick}>
+        <Button
+          size="sm"
+          className="self-start p-[4px_12px]"
+          onClick={onLearnMoreClick}
+        >
           Learn More
         </Button>
       </div>
@@ -66,7 +70,7 @@ export const ExpandingCardContainer: React.FC<{
   return (
     <div
       className={cn(
-        "flex flex-col md:flex-row gap-8 w-full mx-auto transition-all duration-500",
+        "flex gap-4 md:gap-8 w-full mx-auto transition-all duration-500",
         "md:[&>*]:flex-1 md:hover:[&>*:hover]:flex-[2]",
         className
       )}

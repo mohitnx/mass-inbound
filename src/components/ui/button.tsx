@@ -24,9 +24,9 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         className={cn(
           // Base styles
-          "inline-flex items-center justify-center text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-neutral-950 disabled:pointer-events-none disabled:opacity-50 gap-2 ",
+          "inline-flex items-center justify-center text-[14px] sm:text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-neutral-950 disabled:pointer-events-none disabled:opacity-50 gap-0 sm:gap-2 ",
           // Border radius and padding
-          "rounded-[67.5px] p-[8px] hover:rounded-none transition-all duration-500 ease-in-out",
+          "rounded-[67.5px] p-[8px] sm:p-[8px_19px] hover:rounded-none transition-all duration-500 ease-in-out",
           // Variants
           {
             // Gradient background for default/icon
@@ -40,16 +40,16 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           },
           // Size
           {
-            "h-[52px] min-w-[186px]": size === "default",
-            "h-8 px-3 text-xs": size === "sm",
-            "h-[68px] min-w-[202px] text-lg": size === "lg",
+            "h-[32px] sm:h-[52px] sm:min-w-[186px]": size === "default",
           },
           className
         )}
         ref={ref}
         {...props}
       >
-        {icon && <span className="mr-2 flex items-center">{icon}</span>}
+        {icon && (
+          <span className="mr-2 -mt-[2px] flex items-center">{icon}</span>
+        )}
         {children}
       </button>
     );
