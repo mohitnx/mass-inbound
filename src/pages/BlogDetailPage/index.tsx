@@ -1,4 +1,4 @@
-import { useParams, Link, useNavigate } from "react-router-dom";
+import { useParams, Link, useNavigate, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Button } from "../../components/ui/button";
@@ -217,6 +217,13 @@ export default function BlogDetailPage() {
     const [post, setPost] = useState<BlogPost | null>(null);
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
+    const location = useLocation();
+
+    // Scroll to top when component mounts or slug changes
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, [slug, location.pathname]);
+
     useEffect(() => {
         // Find the blog post by slug
         const foundPost = blogPosts.find(p => p.slug === slug);
@@ -276,8 +283,13 @@ export default function BlogDetailPage() {
                             {post.content}
                         </div>
 
-                        <Button size="sm" className="border border-white text-white bg-transparent text-[18px] py-5 px-8" onClick={() => navigate("/blogs")}>
-                            <img src="/icons/back-icon.svg" alt="Back" />
+                        <Button
+                            onClick={() => navigate('/blogs')}
+                            size="sm" className="border border-white text-white bg-transparent text-[18px] py-5 px-8"
+                        >
+                            <svg className="w-4 h-4 mr-2 rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                            </svg>
                             Back to Blogs
                         </Button>
                     </motion.div>
