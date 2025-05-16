@@ -3,7 +3,7 @@ import { Button } from "./ui/button"
 
 const GetInTouch = () => {
   return (
-    <div className="relative w-full flex flex-col items-center bg-black justify-center text-white text-center py-20 min-h-[331px] backdrop-blur-xl">
+    <div className="relative w-full flex flex-col items-center bg-background-900 justify-center text-white text-center py-20 min-h-[331px] backdrop-blur-xl">
       <BackgroundImage imagePath={"/backgrounds/cta-bg.png"} />
 
       <div className="container mx-auto px-8 md:px-4 md:max-w-6xl">
