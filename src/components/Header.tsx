@@ -18,7 +18,7 @@ export function Header() {
 
   return (
     <header
-      className={`absolute top-0 z-50 text-white w-screen ${
+      className={`absolute top-0 z-50 text-white w-full ${
         pathname.pathname === "/about" || pathname.pathname === "/contact"
           ? "bg-[#060606]"
           : "bg-none"
