@@ -4,8 +4,10 @@ import {
   ExpandingCard,
   ExpandingCardContainer,
 } from "../../../components/ui/ExpandingCard";
+import { useNavigate } from "react-router-dom";
 
 export function SolutionsSection() {
+  const navigate = useNavigate();
   return (
     <div className="relative min-h-[calc(74vh-7.8px)] w-full flex flex-col items-center justify-center text-white text-center pb-20 pt-40">
       <BackgroundImage
@@ -30,9 +32,7 @@ export function SolutionsSection() {
             title="Streaming TV Advertising"
             description="Connect with engaged audiences through premium streaming channels, delivering your message directly to modern viewers."
             backgroundImage="/backgrounds/solution/bg-1.png"
-            onLearnMoreClick={() =>
-              console.log("Learn more about Streaming TV")
-            }
+            onLearnMoreClick={() => navigate("/services/streaming-tv")}
           />
 
           {/* Traditional TV Advertising Card */}
@@ -41,9 +41,7 @@ export function SolutionsSection() {
             title="Traditional TV Advertising"
             description="Maximize brand exposure with strategic placements on popular TV networks, reaching households nationwide."
             backgroundImage="/backgrounds/solution/bg-2.png"
-            onLearnMoreClick={() =>
-              console.log("Learn more about Traditional TV")
-            }
+            onLearnMoreClick={() => navigate("/services/traditional-tv")}
           />
         </ExpandingCardContainer>
       </div>

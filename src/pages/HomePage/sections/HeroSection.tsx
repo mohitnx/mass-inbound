@@ -3,6 +3,7 @@ import { BackgroundImage } from "../../../components/BackgroundImage";
 import { IconCircleCaretRight, IconDeviceTvOld } from "@tabler/icons-react";
 import Slider from "../components/hero-slider";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 export function HeroSection() {
   const [isLargeScreen, setIsLargeScreen] = useState(false);
@@ -55,33 +56,37 @@ export function HeroSection() {
         </p>
 
         <div className="flex flex-wrap justify-center gap-4">
-          <Button
-            variant="icon"
-            icon={
-              <IconCircleCaretRight
-                stroke={1.5}
-                className="w-[18px] h-[18px] sm:w-[26.5px] sm:h-[26.5px]"
-              />
-            }
-          >
-            Streaming TV Ads
-          </Button>
+          <Link to="/services/streaming-tv">
+            <Button
+              variant="icon"
+              icon={
+                <IconCircleCaretRight
+                  stroke={1.5}
+                  className="w-[18px] h-[18px] sm:w-[26.5px] sm:h-[26.5px]"
+                />
+              }
+            >
+              Streaming TV Ads
+            </Button>
+          </Link>
 
-          <Button
-            variant="icon-ghost"
-            icon={
-              <IconDeviceTvOld
-                stroke={1.5}
-                className="w-[18px] h-[18px] sm:w-[26.5px] sm:h-[26.5px]"
-              />
-            }
-          >
-            Traditional TV Ads
-          </Button>
+          <Link to="/services/traditional-tv">
+            <Button
+              variant="icon-ghost"
+              icon={
+                <IconDeviceTvOld
+                  stroke={1.5}
+                  className="w-[18px] h-[18px] sm:w-[26.5px] sm:h-[26.5px]"
+                />
+              }
+            >
+              Traditional TV Ads
+            </Button>
+          </Link>
         </div>
       </div>
 
-      <Slider className="absolute bottom-0 sm:-bottom-[33.5px] left-1/2 -translate-x-1/2 w-[90%] sm:w-[67%]" />
+      <Slider className="absolute bottom-0 sm:-bottom-[33.5px] left-1/2 -translate-x-1/2 w-[90%] sm:w-[66%]" />
     </div>
   );
 }
