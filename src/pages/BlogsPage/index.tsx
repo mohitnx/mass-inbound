@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { cn } from "../../lib/utils";
 import { Button } from "../../components/ui/button";
+import GetInTouch from "./sections/GetInTouch";
 
 interface BlogPost {
     id: string;
@@ -44,6 +45,7 @@ export default function BlogsPage() {
     const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
     return (
+        <>
         <div className="relative min-h-[calc(74vh-7.8px)] bg-black w-full flex flex-col items-center justify-center text-white pb-20 pt-48">
             <div className="container mx-auto px-8 md:px-4 max-w-6xl">
                 <div className="text-center mb-16">
@@ -108,5 +110,8 @@ export default function BlogsPage() {
                 </div>
             </div>
         </div>
+
+        <GetInTouch />
+        </>
     );
 }
