@@ -1,5 +1,5 @@
-import { BackgroundImage } from "../../../components/BackgroundImage"
-import { Button } from "../../../components/ui/button"
+import { BackgroundImage } from "./BackgroundImage"
+import { Button } from "./ui/button"
 
 const GetInTouch = () => {
   return (
@@ -14,16 +14,16 @@ const GetInTouch = () => {
           <div className="flex justify-center items-center gap-4 md:gap-10">
             <Button>Get in touch</Button>
             <div className="flex items-center gap-2">
-            <img src="/icons/call.svg" alt="Call Us" />
-            <div className="flex flex-col text-left gap-0">
-              <span className=" text-primary-200 leading-[140%] tracking-[0%]">
-                Call Us
-              </span>
-              <span className="text-[16px] leading-[140%] tracking-[0%]">
-                (941) 586-8512
-              </span>
+              <img src="/icons/call.svg" alt="Call Us" />
+              <div className="flex flex-col text-left gap-0">
+                <span className=" text-primary-200 leading-[140%] tracking-[0%]">
+                  Call Us
+                </span>
+                <span className="text-[16px] leading-[140%] tracking-[0%]">
+                  (941) 586-8512
+                </span>
+              </div>
             </div>
-          </div>
           </div>
         </div>
       </div>

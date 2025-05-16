@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { cn } from "../../lib/utils";
 import { Button } from "../../components/ui/button";
-import GetInTouch from "./sections/GetInTouch";
+import GetInTouch from "../../components/GetInTouch";
 
 interface BlogPost {
     id: string;
