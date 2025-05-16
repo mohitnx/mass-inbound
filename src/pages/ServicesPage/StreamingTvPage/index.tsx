@@ -8,7 +8,7 @@ export function StreamingTv() {
     <div className="min-h-screen w-full relative">
       <div className="absolute inset-0 bg-[#060606] z-[-2]"></div>
       <HeroSection />
-      <div className="px-[20px] md:px-[80px] lg:px-[178px] h-full flex flex-col gap-7 justify-center items-start py-[40px] border-b border-[#FFFFFF]">
+      <div className="px-[20px] md:px-[80px] lg:px-[178px] h-full flex flex-col gap-7 justify-center items-start py-[40px] border-b border-[#FFFFFF] bg-background-900">
         <h2 className="text-heading-4 sm:text-heading-3 leading-[140%] tracking-[0%] font-medium text-start text-white">
           What is Streaming TV Advertising?
         </h2>
