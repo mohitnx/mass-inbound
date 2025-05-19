@@ -58,7 +58,7 @@ export function Footer() {
                 </li>
                 <li>
                   <Link
-                    to="/services/streaming"
+                    to="/services/streaming-tv"
                     className="text-[14px] lg:text-[16px] leading-[140%] tracking-[0%] hover:text-blue-400 whitespace-nowrap"
                   >
                     Streaming Tv
@@ -66,7 +66,7 @@ export function Footer() {
                 </li>
                 <li>
                   <Link
-                    to="/services/traditional"
+                    to="/services/traditional-tv"
                     className="text-[14px] lg:text-[16px] leading-[140%] tracking-[0%] hover:text-blue-400 whitespace-nowrap"
                   >
                     Traditional Tv
